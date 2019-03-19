@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import TaskList from './todo/TaskList'
+import InputTask from "./todo/InputTask";
 class App extends Component {
+  state = {
+    tasks: [
+      { id: 1, task: 'Do homework' },
+      { id: 2, task: 'Read book' }],
+    id: 3
+  }
+  addTask = (task, task2) => {
+    this.setState({
+      tasks: [...this.state.tasks, { id: this.state.id, task, task2 }],
+      id: this.state.id + 1
+    })
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        </head>
+        <h1>Todo</h1>
+        <TaskList tasks={this.state.tasks} />
+        <InputTask addTask={this.addTask} id={this.state.id} />
+        <br />
       </div>
     );
   }
 }
-
 export default App;
